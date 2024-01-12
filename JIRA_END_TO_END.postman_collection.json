@@ -1,0 +1,533 @@
+{
+	"info": {
+		"_postman_id": "98ac0faf-040d-452e-b8ab-f160cb263482",
+		"name": "JIRA_END_TO_END",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31402119"
+	},
+	"item": [
+		{
+			"name": "get dynamic issue type using map copy",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.clear();\r",
+							"const resp=pm.response.json();\r",
+							"\r",
+							"/*for (i=0;i<resp.length;i++)\r",
+							"{if(resp[i].name == 'Improvement')\r",
+							"{\r",
+							"    console.log(resp[i].id);\r",
+							"    pm.collectionVariables.set('issueIDfor',resp[i].id);\r",
+							"}\r",
+							"}*/\r",
+							"\r",
+							"const issueTypes=resp.map(value =>value.name);\r",
+							"console.log(issueTypes);\r",
+							"//const aindex= issueTypes.indexOf(pm.iterationData.get('IssueName'));\r",
+							"//iterationData can be used when we are running whole collection\r",
+							"const aindex= issueTypes.indexOf(pm.variables.get(\"IssueName\"));\r",
+							"console.log(aindex);\r",
+							"const isuID=resp[aindex].id;\r",
+							"pm.collectionVariables.set('DynamicIssueID',isuID);\r",
+							"console.log(isuID);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{JIRA_API_Key}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "noor4937@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://noor4937.atlassian.net/rest/api/2/issuetype",
+					"protocol": "https",
+					"host": [
+						"noor4937",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issuetype"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get dynamic issue type using map copy",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://noor4937.atlassian.net/rest/api/2/issuetype",
+							"protocol": "https",
+							"host": [
+								"noor4937",
+								"atlassian",
+								"net"
+							],
+							"path": [
+								"rest",
+								"api",
+								"2",
+								"issuetype"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 25 Dec 2023 17:54:50 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Server",
+							"value": "AtlassianEdge"
+						},
+						{
+							"key": "Timing-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "X-Arequestid",
+							"value": "aaa76263453bd2e1b7608e0241f01763"
+						},
+						{
+							"key": "X-Aaccountid",
+							"value": "712020%3Af86e4ce0-086d-41fa-8897-5f85dee5db12"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, no-transform"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "br"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Xss-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Atl-Traceid",
+							"value": "397f5ab61acd4ebbbb812b2d6db6debe"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"endpoints\": [{\"url\": \"https://dz8aopenkvv6s.cloudfront.net\"}], \"group\": \"endpoint-1\", \"include_subdomains\": true, \"max_age\": 600}"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"failure_fraction\": 0.001, \"include_subdomains\": true, \"max_age\": 600, \"report_to\": \"endpoint-1\"}"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=63072000; includeSubDomains; preload"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"self\": \"https://noor4937.atlassian.net/rest/api/2/issuetype/10006\",\n        \"id\": \"10006\",\n        \"description\": \"A small piece of work that's part of a larger task.\",\n        \"iconUrl\": \"https://noor4937.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10316?size=medium\",\n        \"name\": \"Sub-task\",\n        \"untranslatedName\": \"Sub-task\",\n        \"subtask\": true,\n        \"avatarId\": 10316,\n        \"hierarchyLevel\": -1\n    },\n    {\n        \"self\": \"https://noor4937.atlassian.net/rest/api/2/issuetype/10003\",\n        \"id\": \"10003\",\n        \"description\": \"Subtasks track small pieces of work that are part of a larger task.\",\n        \"iconUrl\": \"https://noor4937.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10316?size=medium\",\n        \"name\": \"Subtask\",\n        \"untranslatedName\": \"Subtask\",\n        \"subtask\": true,\n        \"avatarId\": 10316,\n        \"hierarchyLevel\": -1,\n        \"scope\": {\n            \"type\": \"PROJECT\",\n            \"project\": {\n                \"id\": \"10000\"\n            }\n        }\n    },\n    {\n        \"self\": \"https://noor4937.atlassian.net/rest/api/2/issuetype/10004\",\n        \"id\": \"10004\",\n        \"description\": \"An improvement or enhancement to an existing feature or task.\",\n        \"iconUrl\": \"https://noor4937.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10310?size=medium\",\n        \"name\": \"Improvement\",\n        \"untranslatedName\": \"Improvement\",\n        \"subtask\": false,\n        \"avatarId\": 10310,\n        \"hierarchyLevel\": 0\n    },\n    {\n        \"self\": \"https://noor4937.atlassian.net/rest/api/2/issuetype/10005\",\n        \"id\": \"10005\",\n        \"description\": \"A small, distinct piece of work.\",\n        \"iconUrl\": \"https://noor4937.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium\",\n        \"name\": \"Task\",\n        \"untranslatedName\": \"Task\",\n        \"subtask\": false,\n        \"avatarId\": 10318,\n        \"hierarchyLevel\": 0\n    },\n    {\n        \"self\": \"https://noor4937.atlassian.net/rest/api/2/issuetype/10008\",\n        \"id\": \"10008\",\n        \"description\": \"A problem or error.\",\n        \"iconUrl\": \"https://noor4937.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10303?size=medium\",\n        \"name\": \"Bug\",\n        \"untranslatedName\": \"Bug\",\n        \"subtask\": false,\n        \"avatarId\": 10303,\n        \"hierarchyLevel\": 0\n    },\n    {\n        \"self\": \"https://noor4937.atlassian.net/rest/api/2/issuetype/10001\",\n        \"id\": \"10001\",\n        \"description\": \"A small, distinct piece of work.\",\n        \"iconUrl\": \"https://noor4937.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium\",\n        \"name\": \"Task\",\n        \"untranslatedName\": \"Task\",\n        \"subtask\": false,\n        \"avatarId\": 10318,\n        \"hierarchyLevel\": 0,\n        \"scope\": {\n            \"type\": \"PROJECT\",\n            \"project\": {\n                \"id\": \"10000\"\n            }\n        }\n    },\n    {\n        \"self\": \"https://noor4937.atlassian.net/rest/api/2/issuetype/10007\",\n        \"id\": \"10007\",\n        \"description\": \"A new feature of the product, which has yet to be developed.\",\n        \"iconUrl\": \"https://noor4937.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10311?size=medium\",\n        \"name\": \"New Feature\",\n        \"untranslatedName\": \"New Feature\",\n        \"subtask\": false,\n        \"avatarId\": 10311,\n        \"hierarchyLevel\": 0\n    },\n    {\n        \"self\": \"https://noor4937.atlassian.net/rest/api/2/issuetype/10000\",\n        \"id\": \"10000\",\n        \"description\": \"A collection of related bugs, stories, and tasks.\",\n        \"iconUrl\": \"https://noor4937.atlassian.net/images/icons/issuetypes/epic.svg\",\n        \"name\": \"Epic\",\n        \"untranslatedName\": \"Epic\",\n        \"subtask\": false,\n        \"hierarchyLevel\": 1\n    },\n    {\n        \"self\": \"https://noor4937.atlassian.net/rest/api/2/issuetype/10002\",\n        \"id\": \"10002\",\n        \"description\": \"A collection of related bugs, stories, and tasks.\",\n        \"iconUrl\": \"https://noor4937.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10307?size=medium\",\n        \"name\": \"Epic\",\n        \"untranslatedName\": \"Epic\",\n        \"subtask\": false,\n        \"avatarId\": 10307,\n        \"hierarchyLevel\": 1,\n        \"scope\": {\n            \"type\": \"PROJECT\",\n            \"project\": {\n                \"id\": \"10000\"\n            }\n        }\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "get dynamic project id Copy",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.clear();\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const resp=pm.response.json();\r",
+							"const projects=resp.values;\r",
+							"const projectkeys=projects.map( values => values.key);\r",
+							"console.log(projectkeys);\r",
+							"const inde=projectkeys.indexOf('TD1');\r",
+							"console.log(inde);\r",
+							"//var ProjectId=resp.values[inde].id;\r",
+							"//console.log(ProjectId);\r",
+							"pm.collectionVariables.set('ProjectID',resp.values[inde].id);\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{JIRA_API_Key}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "noor4937@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://noor4937.atlassian.net//rest/api/3/project/search",
+					"protocol": "https",
+					"host": [
+						"noor4937",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"",
+						"rest",
+						"api",
+						"3",
+						"project",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get dynamic reporter name Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.clear();\r",
+							"const resp=pm.response.json();\r",
+							"console.log(resp);\r",
+							"var names=resp.map( value =>value.displayName);\r",
+							"console.log(names);\r",
+							"const arname=names.indexOf('Shaik Noorjahan');\r",
+							"console.log(arname);\r",
+							"pm.collectionVariables.set(\"ReporterID\",resp[arname].accountId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{JIRA_API_Key}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "noor4937@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://noor4937.atlassian.net/rest/api/2/user/assignable/multiProjectSearch?projectKeys=TD1",
+					"protocol": "https",
+					"host": [
+						"noor4937",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"user",
+						"assignable",
+						"multiProjectSearch"
+					],
+					"query": [
+						{
+							"key": "projectKeys",
+							"value": "TD1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create an issue Copy",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.clear();\r",
+							"//const title= pm.collectionVariables.replaceIn(\"{{$randomPhrase}}\");\r",
+							"//pm.collectionVariables.set('TicketSummary',title);\r",
+							"//pm.collectionVariables.set('TicketSummary',pm.iterationData.get('IssueTitle'));\r",
+							"pm.collectionVariables.set('TicketSummary',pm.variables.get('IssueTitle'));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const resp=pm.response.json();\r",
+							"const ikey=resp.key;\r",
+							"console.log(ikey);\r",
+							"pm.collectionVariables.set(\"CreatedKey\",ikey);\r",
+							"pm.test(\"Status code is 201 and a success\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"    pm.response.to.be.success;\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{JIRA_API_Key}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "noor4937@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"description\": \"Creating an issue from postman\",\r\n        \"issuetype\": {\r\n            \"id\": \"{{DynamicIssueID}}\"\r\n        },\r\n        \"project\": {\r\n            \"id\": \"{{ProjectID}}\"\r\n        },\r\n        \"reporter\": {\r\n            \"id\": \"{{ReporterID}}\"\r\n        },\r\n        \"summary\": \"{{TicketSummary}}\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://noor4937.atlassian.net/rest/api/2/issue",
+					"protocol": "https",
+					"host": [
+						"noor4937",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"2",
+						"issue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get newly created issue Copy",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.clear();"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.clear();\r",
+							"const resp=pm.response.json();\r",
+							"console.log(resp.fields);\r",
+							"console.log(resp.fields.summary);\r",
+							"pm.test(\" Summary matching? \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(resp.fields.summary).to.eql(pm.collectionVariables.get(\"TicketSummary\"));\r",
+							"});\r",
+							"console.log(resp.key);\r",
+							"pm.test(\" Key matching? \", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(resp.key).to.eql(pm.collectionVariables.get(\"CreatedKey\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{JIRA_API_Key}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "noor4937@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://noor4937.atlassian.net//rest/api/2/issue/{{CreatedKey}}",
+					"protocol": "https",
+					"host": [
+						"noor4937",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"",
+						"rest",
+						"api",
+						"2",
+						"issue",
+						"{{CreatedKey}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "TicketSummary",
+			"value": ""
+		},
+		{
+			"key": "CreatedKey",
+			"value": ""
+		},
+		{
+			"key": "JIRA_API_Key",
+			"value": "ATATT3xFfGF0oTotthXu1UPPfYIKorUtigTbrAVFTv5-d7z_H5dAO1xkDoS5iPIRXZkDXUyHqdAwrMpdbJAridKvD4Fk_yuamdPa6gLE2KMi64-KNhYBWeYKdSxlAuIwCIrnq9mDiXuCEstZoMaO6wdKSL--5iIGPYxsS4OIsJszHGP-wJ46VUw=4D23354A",
+			"type": "string"
+		},
+		{
+			"key": "issueIDfor",
+			"value": ""
+		},
+		{
+			"key": "DynamicIssueID",
+			"value": ""
+		},
+		{
+			"key": "ProjectID",
+			"value": ""
+		},
+		{
+			"key": "ReporterID",
+			"value": ""
+		},
+		{
+			"key": "IssueName",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
